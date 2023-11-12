@@ -4,12 +4,17 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnRate = 2.0f;
-    private float nextSpawnTime;
     public float spawnMargin = 0.1f; // 画面の端からのマージン
+    public int maxEnemies = 15; // 一度に存在できる敵の最大数
+
+    private float nextSpawnTime;
+    private int currentEnemyCount; // 現在の敵の数
 
     void Update()
     {
-        if (Time.time >= nextSpawnTime)
+        currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length; // "Enemy"タグを持つオブジェクトの数を数える
+
+        if (Time.time >= nextSpawnTime && currentEnemyCount < maxEnemies)
         {
             SpawnEnemy();
             nextSpawnTime = Time.time + 1f / spawnRate;
