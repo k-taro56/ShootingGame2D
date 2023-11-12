@@ -27,5 +27,8 @@ public class Enemy : MonoBehaviour
     {
         // 敵を破壊する処理
         Destroy(gameObject);
+
+        // スコアを加算する
+        ScoreManager.instance?.AddScore(10); // 10点を加算
     }
 }
