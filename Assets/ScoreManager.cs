@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         // シングルトンパターンを確保
-        if (instance == null)
+        if (instance is null)
         {
             instance = this;
         }
@@ -28,6 +28,6 @@ public class ScoreManager : MonoBehaviour
 
     void UpdateScoreText()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = $"Score: {score}";
     }
 }

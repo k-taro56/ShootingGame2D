@@ -7,8 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public TextMeshProUGUI healthText; // TextMeshProの場合
-    public GameObject gameOver; 
-    public EnemySpawner spawner;
+    public GameObject gameOver;
+    public GameObject enemiesParent;
 
     void Start()
     {
@@ -49,13 +49,7 @@ public class PlayerHealth : MonoBehaviour
         Destroy(gameObject);
         gameOver.gameObject.SetActive(true);
 
-        // スポーン処理を停止
-        spawner.StopSpawning();
-
         // ゲームオーバー処理
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Destroy(enemy);
-        }
+        Destroy(enemiesParent);
     }
 }

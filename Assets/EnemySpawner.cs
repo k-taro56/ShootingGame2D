@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject enemiesParent;
     public float spawnRate = 2.0f;
     public float spawnMargin = 0.6f; // 画面の端からのマージン
     public int maxEnemies = 15; // 一度に存在できる敵の最大数
@@ -10,13 +11,16 @@ public class EnemySpawner : MonoBehaviour
     private float nextSpawnTime;
     private int currentEnemyCount; // 現在の敵の数
 
-    public bool stopSpowing = false;
-
     void Update()
     {
-        currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length; // "Enemy"タグを持つオブジェクトの数を数える
+        if (enemiesParent is null)
+        {
+            return;
+        }
+        
+        currentEnemyCount = enemiesParent.transform.childCount;
 
-        if (!stopSpowing && Time.time >= nextSpawnTime && currentEnemyCount < maxEnemies)
+        if (Time.time >= nextSpawnTime && currentEnemyCount < maxEnemies)
         {
             SpawnEnemy();
             nextSpawnTime = Time.time + 1f / spawnRate;
@@ -35,16 +39,8 @@ public class EnemySpawner : MonoBehaviour
         Vector2 spawnPosition = new(spawnPosX, spawnPosY);
 
         // 敵をインスタンス化し、設定した位置に配置する
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-    }
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        enemy.transform.parent = enemiesParent.transform;
 
-    public void StopSpawning()
-    {
-        stopSpowing = true;
-    }
-
-    public void StartSpawning()
-    {
-        stopSpowing = false;
     }
 }
