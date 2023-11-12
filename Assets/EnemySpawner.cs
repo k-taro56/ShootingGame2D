@@ -10,11 +10,13 @@ public class EnemySpawner : MonoBehaviour
     private float nextSpawnTime;
     private int currentEnemyCount; // 現在の敵の数
 
+    public bool stopSpowing = false;
+
     void Update()
     {
         currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length; // "Enemy"タグを持つオブジェクトの数を数える
 
-        if (Time.time >= nextSpawnTime && currentEnemyCount < maxEnemies)
+        if (!stopSpowing && Time.time >= nextSpawnTime && currentEnemyCount < maxEnemies)
         {
             SpawnEnemy();
             nextSpawnTime = Time.time + 1f / spawnRate;
@@ -34,5 +36,15 @@ public class EnemySpawner : MonoBehaviour
 
         // 敵をインスタンス化し、設定した位置に配置する
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    public void StopSpawning()
+    {
+        stopSpowing = true;
+    }
+
+    public void StartSpawning()
+    {
+        stopSpowing = false;
     }
 }

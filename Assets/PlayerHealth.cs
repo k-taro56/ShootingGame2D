@@ -1,5 +1,6 @@
 using UnityEngine;
-using TMPro; // TextMeshProを使用する場合
+using TMPro;
+using UnityEngine.UI; // TextMeshProを使用する場合
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public TextMeshProUGUI healthText; // TextMeshProの場合
     public TextMeshProUGUI gameOverText; 
+    public Button restartButton;
+    public EnemySpawner spawner;
 
     void Start()
     {
@@ -46,6 +49,10 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Died!");
         Destroy(gameObject);
         gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
+
+        // スポーン処理を停止
+        spawner.StopSpawning();
 
         // ゲームオーバー処理
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
