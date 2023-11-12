@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI; // TextMeshProを使用する場合
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -39,13 +38,12 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealthUI()
     {
-        healthText.text = "HP: " + currentHealth;
+        healthText.text = $"HP: {currentHealth}";
     }
 
     void Die()
     {
         // プレイヤーの死亡処理
-        Debug.Log("Player Died!");
         Destroy(gameObject);
         gameOver.gameObject.SetActive(true);
 
