@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public TextMeshProUGUI healthText; // TextMeshProの場合
     public GameObject gameOver;
     public GameObject enemiesParent;
+    public ScreenFlashEffect flashEffect;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        flashEffect.Flash(); // ダメージを受けたときにフラッシュさせる
         UpdateHealthUI();
 
         if (currentHealth <= 0)
