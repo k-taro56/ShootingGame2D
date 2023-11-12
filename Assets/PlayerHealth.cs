@@ -7,8 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public TextMeshProUGUI healthText; // TextMeshProの場合
-    public TextMeshProUGUI gameOverText; 
-    public Button restartButton;
+    public GameObject gameOver; 
     public EnemySpawner spawner;
 
     void Start()
@@ -48,8 +47,7 @@ public class PlayerHealth : MonoBehaviour
         // プレイヤーの死亡処理
         Debug.Log("Player Died!");
         Destroy(gameObject);
-        gameOverText.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(true);
+        gameOver.gameObject.SetActive(true);
 
         // スポーン処理を停止
         spawner.StopSpawning();
