@@ -4,7 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnRate = 2.0f;
-    public float spawnMargin = 0.1f; // 画面の端からのマージン
+    public float spawnMargin = 0.6f; // 画面の端からのマージン
     public int maxEnemies = 15; // 一度に存在できる敵の最大数
 
     private float nextSpawnTime;
@@ -29,8 +29,8 @@ public class EnemySpawner : MonoBehaviour
 
         // マージンを考慮したスポーン位置を画面内にランダムに設定する
         float spawnPosX = Random.Range(min.x + spawnMargin, max.x - spawnMargin);
-        float spawnPosY = Random.Range(min.y + spawnMargin, max.y - spawnMargin);
-        Vector2 spawnPosition = new Vector2(spawnPosX, spawnPosY);
+        float spawnPosY = Random.Range(min.y + spawnMargin * 6, max.y - spawnMargin);
+        Vector2 spawnPosition = new(spawnPosX, spawnPosY);
 
         // 敵をインスタンス化し、設定した位置に配置する
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
