@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public TextMeshProUGUI healthText; // TextMeshProの場合
+    public TextMeshProUGUI gameOverText; 
 
     void Start()
     {
@@ -43,5 +44,13 @@ public class PlayerHealth : MonoBehaviour
     {
         // プレイヤーの死亡処理
         Debug.Log("Player Died!");
+        Destroy(gameObject);
+        gameOverText.gameObject.SetActive(true);
+
+        // ゲームオーバー処理
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
     }
 }
