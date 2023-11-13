@@ -1,4 +1,4 @@
-name: Unity WebGL Build
+name: Unity Build
 
 on:
   push:
@@ -6,39 +6,51 @@ on:
       - main
 
 jobs:
-  build:
+  buildForAllSupportedPlatforms:
+    name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows # Build a Windows standalone.
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          - iOS # Build an iOS player.
+          - Android # Build an Android .apk standalone app.
+          - WebGL # WebGL.
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Cache Library
-      uses: actions/cache@v3
-      with:
-        path: Library
-        key: ${{ runner.os }}-library-${{ hashFiles('**/Library/*') }}
-        restore-keys: |
-          ${{ runner.os }}-library-
+      - name: Cache Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: ${{ runner.os }}-${{ matrix.targetPlatform }}-library-${{ hashFiles('**/Library/*') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.targetPlatform }}-library-
 
-    - name: Build Project
-      uses: game-ci/unity-builder@v3
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      with:
-        unityVersion: '2022.3.10f1'
-        targetPlatform: WebGL
+      - name: Build Project
+        uses: game-ci/unity-builder@v3
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          unityVersion: '2022.3.10f1'
+          targetPlatform: ${{ matrix.targetPlatform }}
 
-    - name: Upload Build
-      uses: actions/upload-artifact@v3
-      with:
-        name: Build
-        path: build
+      - name: Upload Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/WebGL/WebGL
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/WebGL/WebGL
