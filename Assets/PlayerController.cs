@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
+    public Joystick joystick;
+
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
@@ -40,8 +42,8 @@ public class PlayerController : MonoBehaviour
         transform.position = viewPos;
 
         // Movement code here...
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        float moveX = joystick.Horizontal + Input.GetAxis("Horizontal");
+        float moveY = joystick.Vertical + Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(moveX, moveY, 0) * speed * Time.deltaTime;
         transform.position += movement;
     }
