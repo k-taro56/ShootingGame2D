@@ -1,4 +1,4 @@
-# ShootingGame2D
+# Galactic Guardians
 
 Galactic Guardians: An Odyssey Crafted by AI
 
