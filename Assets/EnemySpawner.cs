@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -13,11 +14,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (enemiesParent is null)
+        if (enemiesParent.IsDestroyed())
         {
             return;
         }
-        
+
         currentEnemyCount = enemiesParent.transform.childCount;
 
         if (Time.time >= nextSpawnTime && currentEnemyCount < maxEnemies)
