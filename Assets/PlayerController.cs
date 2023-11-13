@@ -6,9 +6,18 @@ public class PlayerController : MonoBehaviour
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+    private int lastScreenWidth;
+    private int lastScreenHeight;
 
     // Use this for initialization
     void Start()
+    {
+        lastScreenWidth = Screen.width;
+        lastScreenHeight = Screen.height;
+        UpdateScreenBounds();
+    }
+
+    void UpdateScreenBounds()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; // half of the width
@@ -18,6 +27,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Screen.width != lastScreenWidth || Screen.height != lastScreenHeight)
+        {
+            lastScreenWidth = Screen.width;
+            lastScreenHeight = Screen.height;
+            UpdateScreenBounds();
+        }
+
         Vector3 viewPos = transform.position;
         viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + objectWidth, screenBounds.x - objectWidth);
         viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
