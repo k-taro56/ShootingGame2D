@@ -1094,7 +1094,7 @@ MonoBehaviour:
   enemiesParent: {fileID: 767365743}
   spawnRate: 2
   spawnMargin: 0.1
-  maxEnemies: 5
+  maxEnemies: 10
 --- !u!4 &1454317472
 Transform:
   m_ObjectHideFlags: 0
