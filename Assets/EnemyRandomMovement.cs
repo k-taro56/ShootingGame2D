@@ -5,9 +5,6 @@ public class EnemyRandomMovement : MonoBehaviour
     public float speed = 5.0f;
     public float changeDirectionTime = 2.0f;
 
-    private Vector2 moveDirection;
-    private float timer;
-
     private GameObject target;
 
     void Start()
