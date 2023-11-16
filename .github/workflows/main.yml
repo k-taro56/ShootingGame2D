@@ -1,9 +1,7 @@
-name: Unity Build
+name: Unity Build without WebGL
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: {}
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -21,7 +19,6 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           - iOS # Build an iOS player.
           - Android # Build an Android .apk standalone app.
-          - WebGL # WebGL.
 
     steps:
       - name: Checkout
@@ -58,10 +55,3 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-
-      - name: Deploy to GitHub Pages
-        if: matrix.targetPlatform == 'WebGL'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/WebGL/WebGL
