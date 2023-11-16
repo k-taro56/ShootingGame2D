@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  buildForAllSupportedPlatforms:
+  buildAndDeploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -19,9 +19,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: Library
-          key: ${{ runner.os }}-${{ matrix.targetPlatform }}-library-${{ hashFiles('**/Library/*') }}
+          key: ${{ runner.os }}-WebGL-library-${{ hashFiles('**/Library/*') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.targetPlatform }}-library-
+            ${{ runner.os }}-WebGL-library-
 
       - name: Build Project
         uses: game-ci/unity-builder@v4
