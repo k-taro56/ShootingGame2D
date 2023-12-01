@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  buildForAllSupportedPlatforms:
+  unity-build:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
@@ -55,3 +55,41 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+          
+  iOS-build:
+    name: Generate IPA
+    runs-on: macos-latest
+    needs: unity-build
+
+    steps:
+      - name: Download Xcode Project
+        uses: actions/download-artifact@v2
+        with:
+          name: Build-iOS
+          path: build/iOS
+
+      - name: Build and Export IPA
+        run: |
+          xcodebuild -project build/iOS/Unity-iPhone.xcodeproj \
+                     -scheme GalacticGuardians \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     build
+                     
+          xcodebuild archive -project build/iOS/Unity-iPhone.xcodeproj \
+                             -scheme Unity-iPhone \
+                             -sdk iphoneos \
+                             -configuration Release \
+                             -archivePath path/to/YourApp.xcarchive
+                             
+          xcodebuild -exportArchive \
+                     -archivePath path/to/YourApp.xcarchive \
+                     -exportOptionsPlist ExportOptions.plist \
+                     -exportPath path/to/exportedIPA
+
+      - name: Upload IPA to App Store Connect
+        run: |
+          xcrun altool --upload-app -f path/to/your/app.ipa \
+                       -u ${{ secrets.APPLE_ID }} \
+                       -p ${{ secrets.APP_SPECIFIC_PASSWORD }} \
+                       --type ios
