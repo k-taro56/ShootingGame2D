@@ -70,7 +70,7 @@ jobs:
 
       - name: Create ExportOptions.plist
         run: |
-          echo ${{ secrets.EXPORT_OPTIONS_PLIST }} > ExportOptions.plist
+          echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>app-store</string><key>teamID</key><string>ZGQ36244W3</string><key>uploadSymbols</key><true/><key>uploadBitcode</key><true/><key>compileBitcode</key><true/></dict></plist>' > ExportOptions.plist
 
       - name: Build and Export IPA
         run: |
