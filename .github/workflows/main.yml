@@ -80,16 +80,16 @@ jobs:
                              -scheme Unity-iPhone \
                              -sdk iphoneos \
                              -configuration Release \
-                             -archivePath path/to/YourApp.xcarchive
+                             -archivePath build/iOS/Unity-iPhone.xcarchive
                              
           xcodebuild -exportArchive \
-                     -archivePath path/to/YourApp.xcarchive \
+                     -archivePath build/iOS/Unity-iPhone.xcarchive \
                      -exportOptionsPlist ExportOptions.plist \
                      -exportPath path/to/exportedIPA
 
       - name: Upload IPA to App Store Connect
         run: |
-          xcrun altool --upload-app -f path/to/your/app.ipa \
+          xcrun altool --upload-app -f build/iOS/app.ipa \
                        -u ${{ secrets.APPLE_ID }} \
                        -p ${{ secrets.APP_SPECIFIC_PASSWORD }} \
                        --type ios
