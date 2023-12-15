@@ -51,7 +51,7 @@ jobs:
           androidKeyaliasPass: ${{ matrix.targetPlatform == 'Android' && secrets.KEY_PASSWORD }}
 
       - name: Upload Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
