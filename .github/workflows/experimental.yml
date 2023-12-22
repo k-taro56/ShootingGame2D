@@ -51,6 +51,11 @@ jobs:
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>app-store</string><key>teamID</key><string>ZGQ36244W3</string><key>uploadSymbols</key><true/><key>uploadBitcode</key><true/><key>compileBitcode</key><true/></dict></plist>' > ExportOptions.plist
 
+      - name: Create Provisioning Profile
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
+
       - name: Import Certificates
         uses: Apple-Actions/import-codesign-certs@v1
         with:
@@ -75,6 +80,7 @@ jobs:
                      -archivePath build/iOS/Unity-iPhone.xcarchive \
                      -exportOptionsPlist ExportOptions.plist \
                      -exportPath build/iOS/app.ipa
+
       - name: Upload IPA to App Store Connect
         run: |
           xcrun altool --upload-app -f build/iOS/app.ipa \
