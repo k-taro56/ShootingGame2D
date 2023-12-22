@@ -59,7 +59,7 @@ jobs:
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj -list
           
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
-                     -scheme GalacticGuardians \
+                     -scheme Unity-iPhone \
                      -sdk iphoneos \
                      -configuration Release \
                      build
