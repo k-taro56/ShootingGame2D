@@ -56,6 +56,8 @@ jobs:
                      
       - name: Build and Export IPA
         run: |
+          xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj -list
+          
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
                      -scheme GalacticGuardians \
                      -sdk iphoneos \
