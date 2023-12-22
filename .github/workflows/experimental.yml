@@ -62,20 +62,24 @@ jobs:
           p12-file-base64: ${{ secrets.P12 }}
           p12-password: ${{ secrets.P12_PASSWORD }}
 
-      - name: Build and Export IPA
+      - name: Build Project
         run: |          
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
                      -configuration Release \
                      build
-                     
+
+      - name: Archive Project
+        run: |                        
           xcodebuild archive -project build/iOS/Unity-iPhone.xcodeproj \
                              -scheme Unity-iPhone \
                              -sdk iphoneos \
                              -configuration Release \
                              -archivePath build/iOS/Unity-iPhone.xcarchive
-                             
+
+      - name: Export IPA
+        run: |   
           xcodebuild -exportArchive \
                      -archivePath build/iOS/Unity-iPhone.xcarchive \
                      -exportOptionsPlist ExportOptions.plist \
