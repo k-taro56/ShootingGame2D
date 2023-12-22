@@ -49,10 +49,14 @@ jobs:
       - name: ls-build-iOS
         run: |
           ls build/iOS
+      - name: ls-build-iOS-iOS
+        run: |
+          ls build/iOS/iOS
+                     
                      
       - name: Build and Export IPA
         run: |
-          xcodebuild -project build/iOS/Unity-iPhone.xcodeproj \
+          xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
                      -scheme GalacticGuardians \
                      -sdk iphoneos \
                      -configuration Release \
