@@ -32,8 +32,8 @@ jobs:
       - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          name: Build-iOS
+          path: build/iOS
           
   iOS-build:
     name: Generate IPA
