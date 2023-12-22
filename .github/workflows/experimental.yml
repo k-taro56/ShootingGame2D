@@ -64,6 +64,7 @@ jobs:
                      -configuration Release \
                      PROVISIONING_PROFILE_SPECIFIER="profile" \
                      CODE_SIGN_IDENTITY="iPhone Distribution" \
+                     DEVELOPMENT_TEAM="ZGQ36244W3" \
                      build
 
       - name: Archive Project
