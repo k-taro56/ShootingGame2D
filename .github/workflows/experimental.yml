@@ -62,6 +62,8 @@ jobs:
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
                      -configuration Release \
+                     PROVISIONING_PROFILE_SPECIFIER="profile" \
+                     CODE_SIGN_IDENTITY="iPhone Distribution" \
                      build
 
       - name: Archive Project
