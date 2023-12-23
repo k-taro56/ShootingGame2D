@@ -54,7 +54,7 @@ jobs:
       - name: Create Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
+          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/GalacticGuardians_Provisioning_Profile.mobileprovision
 
       - name: Build Project
         run: |          
@@ -62,7 +62,7 @@ jobs:
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
                      -configuration Release \
-                     PROVISIONING_PROFILE_SPECIFIER="profile" \
+                     PROVISIONING_PROFILE_SPECIFIER="GalacticGuardians_Provisioning_Profile" \
                      CODE_SIGN_IDENTITY="iPhone Distribution" \
                      DEVELOPMENT_TEAM="ZGQ36244W3" \
                      build
