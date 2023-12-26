@@ -12,6 +12,6 @@ Embark on an interstellar journey with "Galactic Guardians," the revolutionary s
 
 ## Play Now!!
 
-[WebGL](https://k-taro56.github.io/ShootingGame2D/)
+- [WebGL](https://k-taro56.github.io/ShootingGame2D/)
 
-[Google Play Store](https://play.google.com/store/apps/details?id=com.ktaro56.GalacticGuardians)
+- [Google Play Store](https://play.google.com/store/apps/details?id=com.ktaro56.GalacticGuardians)
