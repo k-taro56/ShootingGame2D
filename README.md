@@ -10,6 +10,6 @@ Embark on an interstellar journey with "Galactic Guardians," the revolutionary s
 
 "Galactic Guardians" isn't just a game; it's a testament to the boundless potential of AI in game development, inviting players to experience the future of interactive entertainment.
 
-# Google Play Store
+# Mobile App
 
-https://play.google.com/store/apps/details?id=com.ktaro56.GalacticGuardians
+(Google Play Store)[https://play.google.com/store/apps/details?id=com.ktaro56.GalacticGuardians]
