@@ -19,6 +19,7 @@ jobs:
           key: ${{ runner.os }}-iOS-library-${{ hashFiles('**/Library/*') }}
           restore-keys: |
             ${{ runner.os }}-iOS-library-
+
       - name: Build Project
         uses: game-ci/unity-builder@v4
         env:
@@ -56,11 +57,10 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/GalacticGuardians_Provisioning_Profile.mobileprovision
 
-      - name: Import Certificates
-        uses: Apple-Actions/import-codesign-certs@v1
-        with:
-          p12-file-base64: ${{ secrets.P12 }}
-          p12-password: ${{ secrets.P12_PASSWORD }}
+      - name: Install P12 Certificate
+        run: |
+          echo ${{ secrets.P12_CERTIFICATE }} | base64 --decode > certificate.p12
+          sudo security import certificate.p12 -k /Library/Keychains/System.keychain -P ${{ secrets.P12_PASSWORD }} -T /usr/bin/codesign
 
       - name: Build Project
         run: |          
