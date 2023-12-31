@@ -56,6 +56,12 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/GalacticGuardians_Provisioning_Profile.mobileprovision
 
+      - name: Import Certificates
+        uses: Apple-Actions/import-codesign-certs@v1
+        with:
+          p12-file-base64: ${{ secrets.P12 }}
+          p12-password: ${{ secrets.P12_PASSWORD }}
+
       - name: Build Project
         run: |          
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
