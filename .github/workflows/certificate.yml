@@ -1,0 +1,13 @@
+name: Install P12 Certificate
+
+on:
+  workflow_dispatch: {}
+
+jobs:          
+  import:
+    runs-on: macos-latest
+    
+    steps:
+      - run: |
+          echo ${{ secrets.P12 }} | base64 --decode > certificate.p12
+          sudo security import certificate.p12 -k /Library/Keychains/System.keychain -P ${{ secrets.P12_PASSWORD }} -T /usr/bin/codesign
