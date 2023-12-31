@@ -59,7 +59,7 @@ jobs:
 
       - name: Install P12 Certificate
         run: |
-          echo ${{ secrets.P12_CERTIFICATE }} | base64 --decode > certificate.p12
+          echo ${{ secrets.P12 }} | base64 --decode > certificate.p12
           sudo security import certificate.p12 -k /Library/Keychains/System.keychain -P ${{ secrets.P12_PASSWORD }} -T /usr/bin/codesign
 
       - name: Build Project
