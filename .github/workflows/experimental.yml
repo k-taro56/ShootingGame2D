@@ -73,7 +73,6 @@ jobs:
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
                      -configuration Release \
-                     PROVISIONING_PROFILE_SPECIFIER="GalacticGuardians_Provisioning_Profile" \
                      CODE_SIGN_IDENTITY="iPhone Distribution" \
                      DEVELOPMENT_TEAM="ZGQ36244W3" \
                      build
