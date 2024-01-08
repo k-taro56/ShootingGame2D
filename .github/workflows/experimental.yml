@@ -1,7 +1,7 @@
 name: iOS Build Lab
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 jobs:
   unity-build:
@@ -50,7 +50,7 @@ jobs:
 
       - name: Create ExportOptions.plist
         run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>app-store</string><key>signingStyle</key><string>manual</string><key>teamID</key><string>ZGQ36244W3</string><key>uploadSymbols</key><true/><key>compileBitcode</key><true/></dict></plist>' > ExportOptions.plist
+          echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>app-store</string><key>provisioningProfiles</key><dict><key>com.ktaro56.GalacticGuardians</key><string>distribution</string></dict><key>signingStyle</key><string>manual</string><key>teamID</key><string>ZGQ36244W3</string><key>uploadSymbols</key><true/><key>compileBitcode</key><true/></dict></plist>' > ExportOptions.plist
 
       - name: Create Provisioning Profile
         run: |
