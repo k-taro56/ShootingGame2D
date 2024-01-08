@@ -57,7 +57,6 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/GalacticGuardians_Provisioning_Profile.mobileprovision
           echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ ZGQ36244W3/GalacticGuardians_Provisioning_Profile.mobileprovision
-          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/ZGQ36244W3/GalacticGuardians_Provisioning_Profile.mobileprovision
 
       - name: Install Certificate
         run: |
