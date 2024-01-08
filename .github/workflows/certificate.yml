@@ -6,11 +6,13 @@ on:
 jobs:          
   import:
     runs-on: macos-latest
-    
+
     steps:
     - run: |
         echo ${{ secrets.CERTIFICATE }} | base64 --decode > certificate.cer
+        echo ${{ secrets.PRIVKEY }} | base64 --decode > privkey.pem
         security create-keychain -p ${{ secrets.KEYCHAIN_PASSWORD }} tmp.keychain
         security set-keychain-settings -lut 21600 tmp.keychain
         security unlock-keychain -p ${{ secrets.KEYCHAIN_PASSWORD }} tmp.keychain
         security import certificate.cer -k tmp.keychain -A -T /usr/bin/codesign -T /usr/bin/security
+        security import privkey.pem -k tmp.keychain -A -T /usr/bin/codesign -T /usr/bin/security
