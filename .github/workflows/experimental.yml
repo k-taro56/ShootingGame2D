@@ -74,7 +74,8 @@ jobs:
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
-                     -configuration Release \                     
+                     -configuration Release \
+                     -exportOptionsPlist ExportOptions.plist \
                      PROVISIONING_PROFILE_SPECIFIER="GalacticGuardians_Provisioning_Profile" \
                      CODE_SIGN_IDENTITY="iPhone Distribution" \
                      DEVELOPMENT_TEAM="ZGQ36244W3" \
