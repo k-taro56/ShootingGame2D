@@ -13,3 +13,4 @@ jobs:
         security create-keychain -p ${{ secrets.KEYCHAIN_PASSWORD }} tmp.keychain
         security set-keychain-settings -lut 21600 tmp.keychain
         security unlock-keychain -p ${{ secrets.KEYCHAIN_PASSWORD }} tmp.keychain
+        security import certificate.cer -k tmp.keychain -A -T /usr/bin/codesign -T /usr/bin/security
