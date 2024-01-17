@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         // シングルトンパターンを確保
-        if (instance is null)
+        if (ReferenceEquals(instance, null))
         {
             instance = this;
         }
