@@ -14,7 +14,7 @@ public class CameraAspectAdjuster : MonoBehaviour
 
     void Update()
     {
-        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+        Vector2 screenSize = new(Screen.width, Screen.height);
         if (screenSize != lastScreenSize)
         {
             AdjustCamera();
