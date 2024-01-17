@@ -24,7 +24,7 @@ public class CameraAspectAdjuster : MonoBehaviour
 
     void AdjustCamera()
     {
-        float windowAspect = (float)Screen.width / (float)Screen.height;
+        float windowAspect = Screen.width / (float)Screen.height;
         cam.aspect = windowAspect;
     }
 }
