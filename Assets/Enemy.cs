@@ -29,6 +29,6 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
 
         // スコアを加算する
-        ScoreManager.instance?.AddScore(10); // 10点を加算
+        ScoreManager.instance.AddScore(10); // 10点を加算
     }
 }
