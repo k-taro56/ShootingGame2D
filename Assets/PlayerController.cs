@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         // Movement code here...
         float moveX = joystick.Horizontal + Input.GetAxis("Horizontal");
         float moveY = joystick.Vertical + Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveX, moveY, 0) * speed * Time.deltaTime;
+        Vector3 movement = speed * Time.deltaTime * new Vector3(moveX, moveY, 0);
         transform.position += movement;
     }
 }
