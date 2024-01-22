@@ -266,7 +266,7 @@ PlayerSettings:
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: D:/Unity/.keystore
   AndroidKeyaliasName: unity
-  AndroidEnableArmv9SecurityFeatures: 1
+  AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
