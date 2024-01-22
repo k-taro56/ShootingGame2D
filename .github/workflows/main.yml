@@ -97,7 +97,7 @@ jobs:
 
       - name: Build and Export IPA
         run: |
-          xcodebuild -project build/iOS/Unity-iPhone.xcodeproj \
+          xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
                      -configuration Release \
@@ -105,7 +105,7 @@ jobs:
 
       - name: Archive Project
         run: |                        
-          xcodebuild archive -project build/iOS/Unity-iPhone.xcodeproj \
+          xcodebuild archive -project build/iOSiOS//Unity-iPhone.xcodeproj \
                              -scheme Unity-iPhone \
                              -sdk iphoneos \
                              -configuration Release \
