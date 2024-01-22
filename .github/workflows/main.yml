@@ -1,12 +1,16 @@
-name: Unity Build without WebGL
+name: Unity Build
 
 on:
-  workflow_dispatch: {}
+  push:
+    branches:
+      - main
 
 jobs:
   unity-build:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -17,6 +21,7 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           - iOS # Build an iOS player.
           - Android # Build an Android .apk standalone app.
+          - WebGL # WebGL.
 
     steps:
       - name: Checkout
@@ -55,6 +60,13 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+
+      - name: Deploy to GitHub Pages
+        if: matrix.targetPlatform == 'WebGL'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/WebGL/WebGL
           
   iOS-build:
     name: Generate IPA
