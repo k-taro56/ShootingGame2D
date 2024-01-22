@@ -85,6 +85,17 @@ jobs:
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>app-store</string><key>teamID</key><string>ZGQ36244W3</string><key>uploadSymbols</key><true/><key>uploadBitcode</key><true/><key>compileBitcode</key><true/></dict></plist>' > ExportOptions.plist
 
+
+      - name: Install Certificate
+        run: |
+          echo ${{ secrets.CERTIFICATE }} | base64 --decode > certificate.cer
+          echo ${{ secrets.PRIVKEY }} | base64 --decode > privkey.pem
+          security create-keychain -p ${{ secrets.KEYCHAIN_PASSWORD }} tmp.keychain
+          security set-keychain-settings -lut 21600 tmp.keychain
+          security unlock-keychain -p ${{ secrets.KEYCHAIN_PASSWORD }} tmp.keychain
+          security import certificate.cer -k tmp.keychain -A -T /usr/bin/codesign -T /usr/bin/security
+          security import privkey.pem -k tmp.keychain -A -T /usr/bin/codesign -T /usr/bin/security
+
       - name: Build and Export IPA
         run: |
           xcodebuild -project build/iOS/Unity-iPhone.xcodeproj \
