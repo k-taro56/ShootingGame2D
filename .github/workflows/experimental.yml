@@ -58,8 +58,7 @@ jobs:
           echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/GalacticGuardians_Provisioning_Profile.mobileprovision
 
       - run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ ZGQ36244W3
-          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ ZGQ36244W3/GalacticGuardians_Provisioning_Profile.mobileprovision
+          ls ~/Library/MobileDevice/Provisioning\ Profiles/
 
       - name: Install Certificate
         run: |
