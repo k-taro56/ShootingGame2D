@@ -62,6 +62,10 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
 
+      - name: Add CNAME to WebGL Build
+        run: |
+          echo "galacticguardians.k-taro56.com" > build/WebGL/WebGL/CNAME
+
       - name: Deploy to GitHub Pages
         if: matrix.targetPlatform == 'WebGL'
         uses: peaceiris/actions-gh-pages@v3
