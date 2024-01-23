@@ -71,7 +71,7 @@ jobs:
           security import privkey.pem -k tmp.keychain -A -T /usr/bin/codesign -T /usr/bin/security
         
       - name: Build Project
-        run: |          
+        run: |
           xcodebuild -project build/iOS/iOS/Unity-iPhone.xcodeproj \
                      -scheme Unity-iPhone \
                      -sdk iphoneos \
@@ -89,13 +89,20 @@ jobs:
                              -archivePath build/iOS/Unity-iPhone.xcarchive \
                              CODE_SIGNING_ALLOWED=NO
 
+      - name: Create Private Key
+        run: |
+          mkdir private_keys
+          echo "${{ secrets.APPLE_API_KEY }}" | base64 --decode > ./private_keys/AuthKey_${{ secrets.APPLE_API_ISSUER_ID }}.p8
+
       - name: Export IPA
         run: |   
           xcodebuild -exportArchive \
                      -archivePath build/iOS/Unity-iPhone.xcarchive \
                      -exportOptionsPlist ExportOptions.plist \
                      -exportPath build/iOS/app.ipa \
-                     -allowProvisioningUpdate
+                     -authenticationKeyPath private_keys/AuthKey_${{ secrets.APPLE_API_ISSUER_ID }}.p8 \
+                     -authenticationKeyID ${{ secrets.APPLE_API_KEY_ID }} \
+                     -authenticationKeyIssuerID  ${{ secrets.APPLE_API_ISSUER_ID }}
 
       - name: Upload IPA to App Store Connect
         run: |
