@@ -65,8 +65,7 @@ jobs:
       - name: Add CNAME to WebGL Build
         if: matrix.targetPlatform == 'WebGL'
         run: |
-          ls -l
-          chmod 755 build/WebGL/WebGL
+          ls -l build/WebGL/WebGL
           echo "galacticguardians.k-taro56.com" > build/WebGL/WebGL/CNAME
 
       - name: Deploy to GitHub Pages
