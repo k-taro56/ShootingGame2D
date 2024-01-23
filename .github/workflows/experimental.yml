@@ -94,7 +94,8 @@ jobs:
           xcodebuild -exportArchive \
                      -archivePath build/iOS/Unity-iPhone.xcarchive \
                      -exportOptionsPlist ExportOptions.plist \
-                     -exportPath build/iOS/app.ipa
+                     -exportPath build/iOS/app.ipa \
+                     -allowProvisioningUpdate
 
       - name: Upload IPA to App Store Connect
         run: |
