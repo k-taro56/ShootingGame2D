@@ -63,6 +63,7 @@ jobs:
           path: build/${{ matrix.targetPlatform }}
 
       - name: Add CNAME to WebGL Build
+        if: matrix.targetPlatform == 'WebGL'
         run: |
           echo "galacticguardians.k-taro56.com" > build/WebGL/WebGL/CNAME
 
