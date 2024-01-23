@@ -86,7 +86,7 @@ jobs:
                              -scheme Unity-iPhone \
                              -sdk iphoneos \
                              -configuration Release \
-                             -archivePath build/iOS/Unity-iPhone.xcarchive
+                             -archivePath build/iOS/Unity-iPhone.xcarchive \
                              CODE_SIGNING_ALLOWED=NO
 
       - name: Export IPA
