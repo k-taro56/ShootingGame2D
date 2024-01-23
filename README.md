@@ -12,6 +12,6 @@ Embark on an interstellar journey with "Galactic Guardians," the revolutionary s
 
 ## Play Now!!
 
-- [WebGL](https:/galacticguardians.k-taro56.com)
+- [WebGL](https::/galacticguardians.k-taro56.com)
 
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.ktaro56.GalacticGuardians)
