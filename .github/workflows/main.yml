@@ -79,7 +79,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: deploy
           cname: galacticguardians.k-taro56.com
-          
+          enable_jekyll: true
+
   iOS-build:
     name: Generate IPA
     runs-on: macos-latest
