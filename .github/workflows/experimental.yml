@@ -77,7 +77,7 @@ jobs:
                      -sdk iphoneos \
                      -configuration Release \
                      PROVISIONING_PROFILE_SPECIFIER="GalacticGuardians_Provisioning_Profile" \
-                     CODE_SIGNING_ALLOWED=NO
+                     CODE_SIGNING_ALLOWED=NO \
                      build
 
       - name: Archive Project
