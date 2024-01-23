@@ -72,17 +72,13 @@ jobs:
         run: |
           cp -R build/WebGL/WebGL/* deploy/
 
-      - name: Add CNAME to WebGL Build
-        if: matrix.targetPlatform == 'WebGL'
-        run: |
-          echo "galacticguardians.k-taro56.com" > deploy/CNAME
-
       - name: Deploy to GitHub Pages
         if: matrix.targetPlatform == 'WebGL'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: deploy
+          cname: galacticguardians.k-taro56.com
           
   iOS-build:
     name: Generate IPA
