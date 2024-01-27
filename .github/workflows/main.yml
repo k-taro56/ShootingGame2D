@@ -76,7 +76,7 @@ jobs:
         if: matrix.targetPlatform == 'WebGL'
         run : |
           mkdir deploy/PlayStore
-          cp GooglePlayStorePrivacyPolicy.md 'deploy/PlayStore/Privacy Policy.md'
+          cp GooglePlayStorePrivacyPolicy.md deploy/PlayStore/PrivacyPolicy.md
 
       - name: Deploy to GitHub Pages
         if: matrix.targetPlatform == 'WebGL'
