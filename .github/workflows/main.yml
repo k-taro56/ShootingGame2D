@@ -73,6 +73,7 @@ jobs:
           cp -R build/WebGL/WebGL/* deploy/
 
       - name: Copy Privacy Policy to Deploy Directory
+        if: matrix.targetPlatform == 'WebGL'
         run : |
           mkdir deploy/PlayStore
           cp GooglePlayStorePrivacyPolicy.md 'deploy/PlayStore/Privacy Policy.md'
