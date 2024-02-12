@@ -38,7 +38,7 @@ jobs:
           
   iOS-build:
     name: Generate IPA
-    runs-on: macos-latest
+    runs-on: macos-14
     needs: unity-build
 
     steps:
